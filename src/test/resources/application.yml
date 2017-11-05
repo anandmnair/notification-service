@@ -1,0 +1,25 @@
+security:
+  basic:
+    enabled: false
+
+spring:
+  mail:
+    host: localhost
+    port: 3025
+      
+notification:
+  service:
+    non-production: 
+      enabled: true
+      to: 
+      - to@test-mail.com
+      cc:
+      - cc@test-mail.com
+      bcc:
+      - bcc@test-mail.com
+    from: credit-approval@test-mail.com
+    reply-to: credit-approval@test-mail.com
+    templates:
+      test-mail: 
+        inline-images:
+          userImage: user.png 

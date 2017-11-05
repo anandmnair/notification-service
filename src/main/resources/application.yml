@@ -1,0 +1,32 @@
+security:
+  basic:
+    enabled: false
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: username
+    password: password
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true    
+  thymeleaf: 
+    cache: false
+      
+notification:
+  service:
+    non-production: 
+      enabled: true
+      to: 
+      - some-to-mail@gmail.com
+      cc:
+      - some-cc-mail@gmail.com
+      bcc:
+      - some-bcc-mail@gmail.com 
+    from: credit-approval@ca.com
+    reply-to: credit-approval@ca.com
+    templates:
+      credit-approval: 
+        inline-images:
+          userImage: user.png 

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Credit Approval Notification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+</head>
+<body>
+	<div class="container">
+		<div th:if="${#bools.isTrue(nonProduction)}">
+			<h3>Actual Mail Recipients</h3>
+			<div th:if="${actualTo != null}">
+				<h2>
+					To : <span th:text="${actualTo}">!</span>
+				</h2>
+			</div>
+			<div th:if="${actualCc != null}">
+				<h2>
+					Cc : <span th:text="${actualCc}">!</span>
+				</h2>
+			</div>
+			<div th:if="${actualBcc != null}">
+				<h2>
+					Bcc : <span th:text="${actualBcc}">!</span>
+				</h2>
+			</div>
+		</div>
+
+		<h1>
+			Hello <span th:text="${name}">!</span>
+		</h1>
+		<p>
+			Your message is <span th:text="${message}">!</span>
+		</p>
+
+		<p>
+			You can find <b>your inlined image</b> just below this text.
+		</p>
+		<p>
+			<img src="user.png" th:src="|cid:${userImage}|" />
+		</p>
+
+		<p>
+			Regards, <br /> <em>Test Team</em>
+		</p>
+
+	</div>
+	<script src="http://code.jquery.com/jquery.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

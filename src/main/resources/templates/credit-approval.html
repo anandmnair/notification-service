@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Credit Approval Notification</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!-- <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css"
+	rel="stylesheet" media="screen" /> -->
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  />
+
+
+</head>
+<body>
+	<div class="container">
+	
+	
+	<div class="container" th:if="${#bools.isTrue(nonProduction)}">
+		<p class="bg-danger centered">Non Production Mode</p>
+		<h3>Actual Mail Recipients</h3>
+		<div th:if="${actualTo != null}">
+			<h4>
+				To : <span th:text="${actualTo}">!</span>
+			</h4>
+		</div>
+		<div th:if="${actualCc != null}">
+			<h4>
+				Cc : <span th:text="${actualCc}">!</span>
+			</h4>
+		</div>
+		<div th:if="${actualBcc != null}">
+			<h4>
+				Bcc : <span th:text="${actualBcc}">!</span>
+			</h4>
+		</div>
+	</div>
+	
+	
+	<h1>
+		Hello <span th:text="${name}">!</span>
+	</h1>
+	<p>
+		You have been invited to the <b>Credit Approval System</b>
+	</p>
+	<p>Your hobbies are:</p>
+	<ul class="list-group" th:remove="all-but-first">
+		<li class="list-group-item list-group-item-success"
+			th:each="hobby : ${hobbies}" th:text="${hobby}">Reading</li>
+		<li>Writing</li>
+		<li>Bowling</li>
+	</ul>
+
+	<p>
+		You can find <b>your inlined image</b> just below this text.
+	</p>
+	<p>
+		<img src="user.png" th:src="|cid:${userImage}|" />
+	</p>
+
+
+	<div class="row">
+		<div class="col-xs-6 col-md-3">
+			<a href="#" class="thumbnail">A<img src="user.png"
+				th:src="|cid:${userImage}|" />
+			</a>
+		</div>
+		<div class="col-xs-6 col-md-3">
+			<a href="#" class="thumbnail">B<img src="user.png"
+				th:src="|cid:${userImage}|" />
+			</a>
+		</div>
+		<div class="col-xs-6 col-md-3">
+			<a href="#" class="thumbnail">C<img src="user.png"
+				th:src="|cid:${userImage}|" />
+			</a>
+		</div>
+	</div>
+
+	<table class="table table-striped">
+		<tr>
+			<th>No</th>
+			<th>Name</th>
+			<th>Team</th>
+			<th>Status</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Anand</td>
+			<td>TM1</td>
+			<td>APPROVED</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Soma</td>
+			<td>TM2</td>
+			<td>REJECTED</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>Ram</td>
+			<td>TM3</td>
+			<td>TODO</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>Ajay</td>
+			<td>TM4</td>
+			<td>APPROVED</td>
+		</tr>			
+	</table>
+
+	<p>
+		Regards, <br /> <em>The Credit Approval Team</em>
+	</p>
+	
+	</div>
+	<script src="http://code.jquery.com/jquery.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
