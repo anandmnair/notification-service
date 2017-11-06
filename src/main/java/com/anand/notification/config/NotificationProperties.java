@@ -1,5 +1,6 @@
 package com.anand.notification.config;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -26,7 +27,7 @@ public class NotificationProperties {
 
 	private String replyTo;
 	
-	private Map<String,TemplateProperties> templates;
+	private Map<String,TemplateProperties> templates = new LinkedHashMap<>();
 		
 	@PostConstruct
 	public void validate(){

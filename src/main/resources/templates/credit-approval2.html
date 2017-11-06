@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:remove="all">Credit Approval Notification</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+
+	<div class="container">
+
+		<div class="panel panel-danger" th:if="${#bools.isTrue(nonProduction)}">
+			<div class="panel-body">
+				<div class="alert alert-danger" role="alert">
+					<strong>Non Production!</strong> Email Notification in non production mode! Below are the actual recipients
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">To</div>
+					<div class="panel-body">
+						<span class="label label-info" th:text="${actualTo}"></span>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Cc</div>
+					<div class="panel-body">
+						<span class="label label-info" th:text="${actualCc}"></span>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Bcc</div>
+					<div class="panel-body">
+						<span class="label label-info" th:text="${actualBcc}"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="panel panel-primary" th:if="${#bools.isTrue(nonProduction)}">
+			<div class="panel-heading">Credit Approval Notification</div>
+			<div class="panel-body">
+				<h4>
+					Hello <span th:text="${name}!">name!</span>
+				</h4>
+				<p>An approver A added to the workflow</p>
+				
+				<br />
+				
+				<div class="row">
+					<div class="col-xs-3 col-md-3" th:each="approver: ${approver}">
+						<div class="panel panel-success">
+							<div class="panel-heading">Credit Approval Notification</div>
+							<div class="panel-body centered">
+								<div class="row"><div class="text-center"><span th:text="${approver.name}">approver.name</span></div></div>
+								<div class="row"><div class="text-center"><span th:text="${approver.status}">approver.status</span></div></div>
+								<div class="row"><div class="text-center"><span th:text="${approver.date}">approver.date</span></div></div>
+								<div class="row"><div class="text-center"><span th:text="${approver.response}">approver.response</span></div></div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<div class="panel panel-info" th:if="${#bools.isTrue(nonProduction)}">
+							<div class="panel-heading">Credit Approval Notification</div>
+							<div class="panel-body"></div>
+						</div>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<div class="panel panel-warning" th:if="${#bools.isTrue(nonProduction)}">
+							<div class="panel-heading">Credit Approval Notification</div>
+							<div class="panel-body"></div>
+						</div>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<div class="panel panel-danger" th:if="${#bools.isTrue(nonProduction)}">
+							<div class="panel-heading">Credit Approval Notification</div>
+							<div class="panel-body"></div>
+						</div>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<div class="panel panel-danger" th:if="${#bools.isTrue(nonProduction)}">
+							<div class="panel-heading">Credit Approval Notification</div>
+							<div class="panel-body"></div>
+						</div>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<div class="panel panel-danger" th:if="${#bools.isTrue(nonProduction)}">
+							<div class="panel-heading">Credit Approval Notification</div>
+							<div class="panel-body"></div>
+						</div>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<div class="panel panel-danger" th:if="${#bools.isTrue(nonProduction)}">
+							<div class="panel-heading">Credit Approval Notification</div>
+							<div class="panel-body"></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-3 col-md-3">
+						<a href="#" class="thumbnail">A<img src="user.png"
+							th:src="|cid:${userImage}|" />
+						</a>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<a href="#" class="thumbnail">B<img src="user.png"
+							th:src="|cid:${userImage}|" />
+						</a>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<a href="#" class="thumbnail">C<img src="user.png"
+							th:src="|cid:${userImage}|" />
+						</a>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<a href="#" class="thumbnail">C<img src="user.png"
+							th:src="|cid:${userImage}|" />
+						</a>
+					</div>
+				</div>
+				
+				<br />
+				
+				<div>
+					<table class="table table-striped">
+						<tr>
+							<th>No</th>
+							<th>Name</th>
+							<th>Team</th>
+							<th>Status</th>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>Anand</td>
+							<td>TM1</td>
+							<td>APPROVED</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>Soma</td>
+							<td>TM2</td>
+							<td>REJECTED</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>Ram</td>
+							<td>TM3</td>
+							<td>TODO</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>Ajay</td>
+							<td>TM4</td>
+							<td>APPROVED</td>
+						</tr>
+					</table>
+				</div>		
+				
+				<br />
+
+				<div>
+					<p>
+						Regards, <br /> <em>The Credit Approval Team</em> <br />
+					</p>
+						<div class="row">
+						<div class="col-xs-6 col-md-3">
+						<img src="../sg.png" class="img-rounded" alt="Responsive image">
+						</div>
+						</div>
+					
+				</div>
+			</div>
+		</div>	
+		
+	</div>
+	
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

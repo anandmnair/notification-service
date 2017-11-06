@@ -70,12 +70,13 @@ public class NotificationService {
 			emailMessage = notificationMessage.getMessage();
 		} else {
 			context.getVariables().putAll(notificationMessage.getMessageParams());
-			TemplateProperties templateProperties = notificationProperties.getTemplates()
-					.get(notificationMessage.getMessageTemplate());
-			for (Map.Entry<String, String> entry : templateProperties.getInlineImages().entrySet()) {
-				ClassPathResource resource = new ClassPathResource(entry.getValue());
-				context.setVariable(entry.getKey(), resource.getFile().getName());
-				resources.add(resource);
+			if(notificationProperties.getTemplates().containsKey(notificationMessage.getMessageTemplate())) {
+				TemplateProperties templateProperties = notificationProperties.getTemplates().get(notificationMessage.getMessageTemplate());
+				for (Map.Entry<String, String> entry : templateProperties.getInlineImages().entrySet()) {
+					ClassPathResource resource = new ClassPathResource(entry.getValue());
+					context.setVariable(entry.getKey(), resource.getFile().getName());
+					resources.add(resource);
+				}
 			}
 			log.info("context :: {}", context.getVariables());
 			emailMessage = templateEngine.process(notificationMessage.getMessageTemplate(), context);

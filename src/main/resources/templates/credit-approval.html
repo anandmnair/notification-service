@@ -1,123 +1,101 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title th:remove="all">Credit Approval Notification</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<!-- <link href="webjars/bootstrap/3.2.0/css/bootstrap.min.css"
-	rel="stylesheet" media="screen" /> -->
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  />
-
-
+	<title th:remove="all">Credit Approval Notification</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 </head>
 <body>
+
 	<div class="container">
-	
-	
-	<div class="container" th:if="${#bools.isTrue(nonProduction)}">
-		<p class="bg-danger centered">Non Production Mode</p>
-		<h3>Actual Mail Recipients</h3>
-		<div th:if="${actualTo != null}">
-			<h4>
-				To : <span th:text="${actualTo}">!</span>
-			</h4>
+
+		<div class="panel panel-danger" th:if="${#bools.isTrue(nonProduction)}">
+			<div class="panel-body">
+				<div class="alert alert-danger" role="alert">
+					<strong>Non Production!</strong> Email Notification in non production mode! Below are the actual recipients
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">To</div>
+					<div class="panel-body">
+						<span class="label label-info" th:each="actTo : ${actualTo}" th:text="${actTo}"></span>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Cc</div>
+					<div class="panel-body">
+						<span class="label label-info" th:each="actCc : ${actualCc}" th:text="${actCc}"></span>
+					</div>
+				</div>
+				<div class="panel panel-info">
+					<div class="panel-heading">Bcc</div>
+					<div class="panel-body">
+						<span class="label label-info" th:each="actBcc : ${actualBcc}" th:text="${actBcc}"></span>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div th:if="${actualCc != null}">
-			<h4>
-				Cc : <span th:text="${actualCc}">!</span>
-			</h4>
-		</div>
-		<div th:if="${actualBcc != null}">
-			<h4>
-				Bcc : <span th:text="${actualBcc}">!</span>
-			</h4>
-		</div>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">Credit Approval Notification</div>
+			<div class="panel-body">
+				<h4>
+					Hello <span th:text="${name}">name!</span>
+				</h4>
+				<p>An approver A added to the workflow</p>
+				
+				<br />
+				
+					<div th:each="approver : ${approvers}">
+						<div class="panel" th:classappend="${approver.status} == 'APPROVED' ? panel-success : ( ${approver.status} == 'REJECTED' ? panel-danger : panel-warning ) " >
+							<div class="panel-heading text-center" th:text="${approver.name}">Approver</div>
+							<div class="panel-body centered">
+								<div class="row"><div class="text-center"><span th:text="${approver.status}">approver.status</span></div></div>
+								<div class="row"><div class="text-center"><span th:text="${approver.date}">approver.date</span></div></div>
+								<div class="row"><div class="text-center"><span th:text="${approver.response}">approver.response</span></div></div>
+							</div>
+						</div>
+					</div>
+					
+				
+				<br />
+				
+				<div>
+					<table class="table table-striped">
+						<tr>
+							<th>No</th>
+							<th>Name</th>
+							<th>Status</th>
+							<th>Date</th>
+							<th>Comments</th>
+						</tr>
+						<tr th:classappend="${approver.status} == 'APPROVED' ? success : ( ${approver.status} == 'REJECTED' ? danger : warning ) "  th:each="approver,iter : ${approvers}">
+							<td th:text="${iter.index}"></td>
+							<td th:text="${approver.name}"></td>
+							<td th:text="${approver.status}"></td>
+							<td th:text="${approver.date}"></td>
+							<td th:text="${approver.response}"></td>
+						</tr>
+					</table>
+				</div>		
+				
+				<br />
+
+				<div>
+					<p>
+						Regards, <br /> <em>The Credit Approval Team</em> <br />
+					</p>
+				</div>
+			</div>
+		</div>	
+		
 	</div>
 	
-	
-	<h1>
-		Hello <span th:text="${name}">!</span>
-	</h1>
-	<p>
-		You have been invited to the <b>Credit Approval System</b>
-	</p>
-	<p>Your hobbies are:</p>
-	<ul class="list-group" th:remove="all-but-first">
-		<li class="list-group-item list-group-item-success"
-			th:each="hobby : ${hobbies}" th:text="${hobby}">Reading</li>
-		<li>Writing</li>
-		<li>Bowling</li>
-	</ul>
-
-	<p>
-		You can find <b>your inlined image</b> just below this text.
-	</p>
-	<p>
-		<img src="user.png" th:src="|cid:${userImage}|" />
-	</p>
-
-
-	<div class="row">
-		<div class="col-xs-6 col-md-3">
-			<a href="#" class="thumbnail">A<img src="user.png"
-				th:src="|cid:${userImage}|" />
-			</a>
-		</div>
-		<div class="col-xs-6 col-md-3">
-			<a href="#" class="thumbnail">B<img src="user.png"
-				th:src="|cid:${userImage}|" />
-			</a>
-		</div>
-		<div class="col-xs-6 col-md-3">
-			<a href="#" class="thumbnail">C<img src="user.png"
-				th:src="|cid:${userImage}|" />
-			</a>
-		</div>
-	</div>
-
-	<table class="table table-striped">
-		<tr>
-			<th>No</th>
-			<th>Name</th>
-			<th>Team</th>
-			<th>Status</th>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td>Anand</td>
-			<td>TM1</td>
-			<td>APPROVED</td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td>Soma</td>
-			<td>TM2</td>
-			<td>REJECTED</td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td>Ram</td>
-			<td>TM3</td>
-			<td>TODO</td>
-		</tr>
-		<tr>
-			<td>4</td>
-			<td>Ajay</td>
-			<td>TM4</td>
-			<td>APPROVED</td>
-		</tr>			
-	</table>
-
-	<p>
-		Regards, <br /> <em>The Credit Approval Team</em>
-	</p>
-	
-	</div>
 	<script src="http://code.jquery.com/jquery.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>

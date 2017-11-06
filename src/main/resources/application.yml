@@ -19,14 +19,17 @@ notification:
     non-production: 
       enabled: true
       to: 
-      - some-to-mail@gmail.com
+      - some-to-mail-1@ca.com
+      - some-to-mail-2@ca.com
       cc:
-      - some-cc-mail@gmail.com
+      - some-cc-mail-1@ca.com
+      - some-cc-mail-2@ca.com
+      - some-cc-mail-3@ca.com
       bcc:
-      - some-bcc-mail@gmail.com 
+      - some-bcc-mail-1@ca.com
     from: credit-approval@ca.com
     reply-to: credit-approval@ca.com
-    templates:
-      credit-approval: 
-        inline-images:
-          userImage: user.png 
+#    templates:
+#      credit-approval: 
+#        inline-images:
+#          userImage: sg.png 
