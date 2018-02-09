@@ -105,6 +105,7 @@
 	</dependencyManagement>
 
 	<build>
+		 <pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -135,6 +136,7 @@
 				<version>4.1.0</version>
 			</plugin>
 		</plugins>
+			  </pluginManagement>
 	</build>
 
 
